@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://housebad.png" type="Texture" id=2]
+[ext_resource path="res://MasterSimple (copy).png" type="Texture" id=3]
+[ext_resource path="res://MasterSimple (3rd copy).png" type="Texture" id=4]
+[ext_resource path="res:// overworld.ogg" type="AudioStream" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1009.19, 10 )
+
+[node name="world" type="Node2D"]
+
+[node name="housebad" type="Sprite" parent="."]
+position = Vector2( 343.758, 50.1034 )
+scale = Vector2( 21.6093, 10.6962 )
+texture = ExtResource( 2 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+scale = Vector2( 0.8, 0.8 )
+
+[node name="MasterSimple (copy)" type="Sprite" parent="."]
+position = Vector2( 366.16, 290.751 )
+scale = Vector2( 43.2187, 21.3924 )
+z_index = -1
+texture = ExtResource( 3 )
+
+[node name="MasterSimple (3rd copy)" type="Sprite" parent="."]
+position = Vector2( -280.143, 804.801 )
+scale = Vector2( 10, 10 )
+z_index = -1
+texture = ExtResource( 4 )
+
+[node name="MasterSimple (3rd copy)2" type="Sprite" parent="."]
+position = Vector2( 181.688, 802.913 )
+scale = Vector2( 10, 10 )
+z_index = -1
+texture = ExtResource( 4 )
+
+[node name="MasterSimple (3rd copy)3" type="Sprite" parent="."]
+position = Vector2( 636.083, 804.801 )
+scale = Vector2( 10, 10 )
+z_index = -1
+texture = ExtResource( 4 )
+
+[node name="MasterSimple (3rd copy)4" type="Sprite" parent="."]
+position = Vector2( 1051.87, 808.577 )
+scale = Vector2( 8.70764, 10 )
+z_index = -1
+texture = ExtResource( 4 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 411.688, 788.117 )
+scale = Vector2( 1.01349, 0.976054 )
+shape = SubResource( 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true

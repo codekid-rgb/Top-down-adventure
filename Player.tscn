@@ -1,0 +1,218 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://char_red_1 (4th copy).png" type="Texture" id=1]
+[ext_resource path="res://Player.gd" type="Script" id=2]
+[ext_resource path="res://RunRight.tres" type="Animation" id=3]
+[ext_resource path="res://RunLeft.tres" type="Animation" id=4]
+[ext_resource path="res://Idle Right.tres" type="Animation" id=5]
+[ext_resource path="res://IdleLeft.tres" type="Animation" id=6]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 34.0
+height = 0.0
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(":frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CharSpriteSheet:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 17 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CharSpriteSheet:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "sword left"
+length = 0.14
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("CharSpriteSheet:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CharSpriteSheet:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.03, 0.06, 0.09, 0.12 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11, 12 ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "sword right"
+length = 0.14
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("CharSpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.03, 0.06, 0.09, 0.12 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11, 12 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CharSpriteSheet:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "sword left"
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "sword right"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=18]
+blend_point_0/node = SubResource( 16 )
+blend_point_0/pos = -0.1
+blend_point_1/node = SubResource( 17 )
+blend_point_1/pos = 0.1
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "IdleLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "Idle Right"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=6]
+blend_point_0/node = SubResource( 4 )
+blend_point_0/pos = -0.04
+blend_point_1/node = SubResource( 5 )
+blend_point_1/pos = 0.04
+snap = 0.02
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "RunLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "RunRight"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=9]
+blend_point_0/node = SubResource( 7 )
+blend_point_0/pos = -0.04
+blend_point_1/node = SubResource( 8 )
+blend_point_1/pos = 0.04
+snap = 0.04
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+
+[sub_resource type="AnimationNodeStateMachine" id=10]
+states/Sword/node = SubResource( 18 )
+states/Sword/position = Vector2( 766.35, 62 )
+states/idle/node = SubResource( 6 )
+states/idle/position = Vector2( 847, 161 )
+states/run/node = SubResource( 9 )
+states/run/position = Vector2( 1031, 161 )
+transitions = [ "idle", "run", SubResource( 12 ), "run", "idle", SubResource( 13 ), "idle", "Sword", SubResource( 19 ), "Sword", "idle", SubResource( 20 ), "Sword", "run", SubResource( 21 ), "run", "Sword", SubResource( 22 ) ]
+start_node = "idle"
+graph_offset = Vector2( -188.65, 0 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=11]
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 0.3
+method_call_mode = 1
+"anims/Idle Right" = ExtResource( 5 )
+anims/IdleLeft = ExtResource( 6 )
+anims/RESET = SubResource( 3 )
+anims/RunLeft = ExtResource( 4 )
+anims/RunRight = ExtResource( 3 )
+"anims/sword left" = SubResource( 15 )
+"anims/sword right" = SubResource( 14 )
+
+[node name="CharSpriteSheet" type="Sprite" parent="."]
+position = Vector2( -102, -197 )
+scale = Vector2( 3.85714, 3.85714 )
+texture = ExtResource( 1 )
+centered = false
+hframes = 8
+vframes = 11
+frame = 17
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 10 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 11 )
+parameters/Sword/blend_position = 0
+parameters/idle/blend_position = 0.0
+parameters/run/blend_position = 0.0
