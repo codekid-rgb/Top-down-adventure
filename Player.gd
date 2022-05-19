@@ -4,7 +4,7 @@ extends KinematicBody2D
 const MAX_SPEED = 500
 
 # Control rate at which player gets up to speed
-const ACCELERATION = 1001
+const ACCELERATION = 1000
 
 # Control rate at which player goes to zero
 const FRICTION = 3000
